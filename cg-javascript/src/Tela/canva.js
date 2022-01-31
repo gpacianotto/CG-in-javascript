@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
+import Config from "../Configuration/Config";
 export default function Canva(){
     const canvasElement = document.querySelector('#canvas-main');
-    
+    const config = Config.getInstance();
+    const brushSize = config.getBrushSize();
         
     const [mouseDown, setMouseDown] = useState(false);
     const [scaled, setScaled] = useState(false);
-    // const [MousePosition, setMousePosition] = useState({
-    //     left: 0,
-    //     top: 0
-    // })
+    
     console.log("canvas element: ", canvasElement);
     
     function drawPixel(x, y, color) {
@@ -19,7 +18,7 @@ export default function Canva(){
     
         context.beginPath();
         context.fillStyle = color || '#000';
-        context.fillRect(roundedX, roundedY, 4, 4);
+        context.fillRect(roundedX, roundedY, brushSize, brushSize);
         context.fill();
     }
     function handleMouseMove(ev){
@@ -46,7 +45,7 @@ export default function Canva(){
         context.canvas.width  = window.innerWidth;
         context.canvas.height = window.innerHeight;
 
-        setScaled(false);
+        //setScaled(false);
     }, []);
     return (
     <canvas
