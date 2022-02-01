@@ -13,6 +13,28 @@ export default class Config{
     constructor(){
         this.brushSize = 1;
         this.brushMode = 0;
+        this.canvasWidth = 350;
+        this.canvasHeight = 350;
+    }
+
+    setCanvasWidth(width)
+    {
+        this.canvasWidth = width
+    }
+
+    getCanvasWidth()
+    {
+        return this.canvasWidth;
+    }
+
+    setCanvasHeight(height)
+    {
+        this.canvasHeight = height;
+    }
+
+    getCanvasHeight()
+    {
+        return this.canvasHeight;
     }
 
     setBrushMode(mode)

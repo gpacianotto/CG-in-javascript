@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Config from "../Configuration/Config";
 export default function Canva(){
     const canvasElement = document.querySelector('#canvas-main');
@@ -7,6 +7,7 @@ export default function Canva(){
         
     const [mouseDown, setMouseDown] = useState(false);
     const [scaled, setScaled] = useState(false);
+    
     
     console.log("canvas element: ", canvasElement);
     
@@ -40,21 +41,23 @@ export default function Canva(){
         //     canvasElement.height = window.innerHeight;
         //     setScaled(true)
         // }
-        let context = canvasElement.getContext('2d');
+        // let context = canvasElement.getContext('2d');
 
-        context.canvas.width  = window.innerWidth;
-        context.canvas.height = window.innerHeight;
+        // context.canvas.width  = screenW;
+        // context.canvas.height = screenH;
 
         //setScaled(false);
     }, []);
     return (
     <canvas
-    //style={{height: "100%", width: "100%"}}
+    style={{border: "2px solid gray"}}
     id="canvas-main"
     //onClick={() => {drawPixel((Math.floor(Math.random() * 100)), (Math.floor(Math.random() * 100)), 'black')}}
     onMouseDown={() => {setMouseDown(true)}}
     onMouseUp={() => {setMouseDown(false)}}
     onMouseMove={(ev) => {if(mouseDown) drawPixel(ev.pageX, ev.pageY, 'black')}}
+    width={config.getCanvasWidth()}
+    height={config.getCanvasHeight()}
     //onMouseDownCapture={() => {drawPixel((Math.floor(Math.random() * 100)), (Math.floor(Math.random() * 100)), 'black')}}
     >
 

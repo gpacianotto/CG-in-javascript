@@ -1,6 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import Canva from './Tela/canva';
+import {
+  Row,
+  Col
+} from 'reactstrap'
+import Menu from './Menu/Menu';
 
 function App() {
   return (
@@ -21,9 +26,18 @@ function App() {
     //   </header>
     // </div>
     <>
+
+      
+
       <Canva>
         brownser not supported
       </Canva>
+
+      <Row>
+        <Col xl='12'>
+          <Menu/>
+        </Col>
+      </Row>
     </>
   );
 }
