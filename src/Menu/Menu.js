@@ -14,9 +14,13 @@ import {
     Col
 } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
-export default function Menu() {
+export default function Menu({setCanvasHeight, setCanvasWidth}) {
     const [dimForm, setDimForm] = useState(false);
     const [brushForm, setBrushForm] = useState(false);
+
+    const [innerCanvasHeight, setInnerCanvasHeight] = useState(0);
+    const [innerCanvasWidth, setInnerCanvasWidth] = useState(0);
+
     return <>
     <div className='mt-4 mb-4'>
         
@@ -70,6 +74,9 @@ export default function Menu() {
             name="largura"
             placeholder="Largura"
             type="text"
+            onChange={(e) =>{
+                setInnerCanvasWidth(parseInt(e.target.value));
+            }}
             />
         </FormGroup>
         <FormGroup>
@@ -80,11 +87,21 @@ export default function Menu() {
             id="width"
             name="largura"
             placeholder="Altura"
+            onChange={(e) =>{
+                setInnerCanvasHeight(parseInt(e.target.value));
+            }}
             type="text"
             />
         </FormGroup>
         </Form>
-        <Button>
+        <Button
+            onClick={() =>{
+                setInnerCanvasHeight(0);
+                setInnerCanvasWidth(0);
+                setCanvasHeight(innerCanvasHeight);
+                setDimForm(false);
+            }}
+        >
             Salvar
         </Button>
         </CardBody>

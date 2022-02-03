@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
 import Config from "../Configuration/Config";
-export default function Canva(){
+export default function Canva({canvasWidth, canvasHeight}){
     const canvasElement = document.querySelector('#canvas-main');
     const config = Config.getInstance();
     const brushSize = config.getBrushSize();
@@ -94,8 +94,8 @@ export default function Canva(){
             
         // }                        
     }}
-    width={config.getCanvasWidth()}
-    height={config.getCanvasHeight()}
+    width={canvasWidth}
+    height={canvasHeight}
     //onMouseDownCapture={() => {drawPixel((Math.floor(Math.random() * 100)), (Math.floor(Math.random() * 100)), 'black')}}
     >
 

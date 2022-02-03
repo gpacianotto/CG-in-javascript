@@ -6,8 +6,13 @@ import {
   Col
 } from 'reactstrap'
 import Menu from './Menu/Menu';
+import { useState } from 'react';
 
 function App() {
+
+  const [canvasWidth, setCanvasWidth] = useState(350);
+  const [canvasHeight, setCanvasHeight] = useState(350);
+
   return (
     // <div className="App">
     //   <header className="App-header">
@@ -29,13 +34,16 @@ function App() {
 
       
 
-      <Canva>
+      <Canva canvasWidth={canvasWidth} canvasHeight={canvasHeight}>
         brownser not supported
       </Canva>
 
       <Row>
         <Col xl='12'>
-          <Menu/>
+          <Menu
+          setCanvasHeight={setCanvasHeight}
+          setCanvasWidth={setCanvasWidth}
+          />
         </Col>
       </Row>
     </>
