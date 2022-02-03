@@ -15,6 +15,36 @@ export default class Config{
         this.brushMode = 1;
         this.canvasWidth = 350;
         this.canvasHeight = 350;
+        this.tail = [];
+    }
+
+    addPoint(x, y){
+        let point = {
+            x: x,
+            y: y
+        }
+
+        this.tail.push(point);
+    }
+
+    clearPoints()
+    {
+        this.tail = [];
+    }
+
+    showPoints()
+    {
+        console.log("points: ", this.tail);
+    }
+
+    getLastPoint()
+    {
+        return this.tail[this.tail.length - 1];
+    }
+
+    getSecondLastPoint()
+    {
+        return this.tail[this.tail.length - 2];
     }
 
     setCanvasWidth(width)
