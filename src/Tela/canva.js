@@ -77,14 +77,22 @@ export default function Canva({canvasWidth, canvasHeight}){
     id="canvas-main"
     //onClick={() => {drawPixel((Math.floor(Math.random() * 100)), (Math.floor(Math.random() * 100)), 'black')}}
     onMouseDown={(ev) => {
-        setMouseDown(true);  
-        config.addPoint(ev.pageX, ev.pageY);
+        setMouseDown(true);
+        if(config.getBrushMode() == 1)
+        {
+            config.addPoint(ev.pageX, ev.pageY);
+        }  
+        
         
     }}
     onMouseUp={(ev) => {
         setMouseDown(false); 
-        config.addPoint(ev.pageX, ev.pageY);
-        drawLine(config.getLastPoint(), config.getSecondLastPoint())
+        if(config.getBrushMode() == 1)
+        {
+            config.addPoint(ev.pageX, ev.pageY);
+            drawLine(config.getLastPoint(), config.getSecondLastPoint())
+        }
+        
     }}
     onMouseMove={(ev) => {
         if(mouseDown && config.getBrushMode() == 0) drawPixel(ev.pageX, ev.pageY, 'black');
