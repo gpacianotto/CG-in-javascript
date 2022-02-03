@@ -7,7 +7,7 @@ export default function Canva(){
         
     const [mouseDown, setMouseDown] = useState(false);
     const [scaled, setScaled] = useState(false);
-    
+    let tail = [];
     
     console.log("canvas element: ", canvasElement);
     
@@ -55,7 +55,14 @@ export default function Canva(){
     //onClick={() => {drawPixel((Math.floor(Math.random() * 100)), (Math.floor(Math.random() * 100)), 'black')}}
     onMouseDown={() => {setMouseDown(true)}}
     onMouseUp={() => {setMouseDown(false)}}
-    onMouseMove={(ev) => {if(mouseDown) drawPixel(ev.pageX, ev.pageY, 'black')}}
+    onMouseMove={(ev) => {
+        if(mouseDown && config.getBrushMode() == 0) drawPixel(ev.pageX, ev.pageY, 'black');
+        if(mouseDown && config.getBrushMode() == 1) {tail.push(ev.pageX);}
+        if(!mouseDown && config.getBrushMode() == 1) {
+            console.log("tail: ",tail);
+            
+        }                        
+    }}
     width={config.getCanvasWidth()}
     height={config.getCanvasHeight()}
     //onMouseDownCapture={() => {drawPixel((Math.floor(Math.random() * 100)), (Math.floor(Math.random() * 100)), 'black')}}

@@ -90,5 +90,50 @@ export default function Menu() {
         </CardBody>
     </Card>}
     
+    {brushForm && 
+    
+    <Card>
+        <CardBody>
+        <CardTitle tag="h5">
+            Dimensões
+        </CardTitle>
+        <CardSubtitle
+            className="mb-2 text-muted"
+            tag="h6"
+        >
+            Configure aqui as dimensões do canvas
+        </CardSubtitle>
+        <Form>
+        <FormGroup>
+            <Label for="exampleEmail">
+            Largura do Quadro
+            </Label>
+            <Input
+            id="width"
+            name="largura"
+            placeholder="Largura"
+            type="text"
+            />
+        </FormGroup>
+        <FormGroup>
+            <Label for="exampleEmail">
+            Altura do Quadro
+            </Label>
+            <Input
+            id="width"
+            name="largura"
+            placeholder="Altura"
+            type="text"
+            />
+        </FormGroup>
+        </Form>
+        <Button>
+            Salvar
+        </Button>
+        </CardBody>
+    </Card>
+
+    }
+
     </>
 }

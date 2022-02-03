@@ -11,8 +11,8 @@ export default class Config{
     }
 
     constructor(){
-        this.brushSize = 1;
-        this.brushMode = 0;
+        this.brushSize = 4;
+        this.brushMode = 1;
         this.canvasWidth = 350;
         this.canvasHeight = 350;
     }
