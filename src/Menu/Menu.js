@@ -112,6 +112,7 @@ export default function Menu({setCanvasHeight, setCanvasWidth}) {
                             setInnerCanvasHeight(0);
                             setInnerCanvasWidth(0);
                             setCanvasHeight(innerCanvasHeight);
+                            setCanvasWidth(innerCanvasWidth);
                             setDimForm(false);
                         }
                         else{
