@@ -11,7 +11,7 @@ export default class Config{
     }
 
     constructor(){
-        this.brushSize = 4;
+        this.brushSize = 1;
         this.brushMode = 1;
         this.canvasWidth = 350;
         this.canvasHeight = 350;
@@ -30,6 +30,34 @@ export default class Config{
     clearPoints()
     {
         this.tail = [];
+    }
+
+    getDistanceBetweenPoints(pointA, pointB)
+    {
+        let squareX = (pointB.x - pointA.x) * (pointB.x - pointA.x);
+        let squareY = (pointB.y - pointA.y) * (pointB.y - pointA.y);
+
+        let sum = squareX + squareY;
+
+        let root = Math.sqrt(sum);
+        
+        return root;
+    }
+
+    getRadiusLastClick()
+    {
+        let radius = this.getDistanceBetweenPoints(this.getSecondLastPoint(), this.getLastPoint());
+
+        console.log("raio: ", radius);
+
+        return Math.ceil(radius);
+    }
+
+    getCenterCircle()
+    {
+        //retorna o penultimo ponto
+
+        return this.getSecondLastPoint();
     }
 
     showPoints()

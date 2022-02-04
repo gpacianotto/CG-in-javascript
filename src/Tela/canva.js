@@ -90,6 +90,7 @@ export default function Canva({canvasWidth, canvasHeight}){
         if(config.getBrushMode() == 1)
         {
             config.addPoint(ev.pageX, ev.pageY);
+            config.getRadiusLastClick();
             drawLine(config.getLastPoint(), config.getSecondLastPoint())
         }
         
