@@ -14,7 +14,9 @@ import {
     Col
 } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Config from '../Configuration/Config';
 export default function Menu({setCanvasHeight, setCanvasWidth}) {
+    const config = Config.getInstance();
     const [dimForm, setDimForm] = useState(false);
     const [brushForm, setBrushForm] = useState(false);
     const [details, setDetails] = useState(false);
@@ -150,40 +152,71 @@ export default function Menu({setCanvasHeight, setCanvasWidth}) {
                         Tipo de pincel
                         </Label>
                         <Input
-                        id="exampleSelect"
+                        id="select-brush"
                         name="select"
                         type="select"
+                        
                         >
                         <option>
-                            1
+                            Lápis
                         </option>
                         <option>
-                            2
+                            Retas
                         </option>
                         <option>
-                            3
+                            Círculos
                         </option>
-                        <option>
-                            4
-                        </option>
-                        <option>
-                            5
-                        </option>
+                        
                         </Input>
                     </FormGroup>
                 <FormGroup>
                     <Label for="exampleEmail">
-                    
+                        Tamanho
                     </Label>
                     <Input
-                    id="width"
+                    id="brush-size"
                     name="largura"
                     placeholder="Altura"
-                    type="text"
+                    type="number"
+                    defaultValue={1}
                     />
                 </FormGroup>
                 </Form>
-                <Button>
+                <Button
+                onClick={() => {
+                    //config.setBrushMode(brushType);
+                    let brushSelect = document.querySelector('#select-brush');
+                    let brushSizeInput = document.querySelector('#brush-size');
+                    let brushSize = parseInt(brushSizeInput.value);
+                    switch(brushSelect.value)
+                    {
+                        case 'Lápis':
+                            config.setBrushMode(0);
+                            break;
+                        case 'Retas':
+                            config.setBrushMode(1);
+                            break;
+                        case 'Círculos':
+                            config.setBrushMode(2);
+                            break;
+                        default:
+                            config.setBrushMode(0);
+                            break;
+                    }
+
+                    if((brushSize <= 0) || (brushSize > 20 ) )
+                    {
+                        alert('Tamanho do pincel deve ser: tam > 0 && tam <= 20');
+                    }
+                    else
+                    {
+                        config.setBrushSize(brushSize);
+                    }
+                    
+                    setBrushForm(false);
+
+                }}
+                >
                     Salvar
                 </Button>
                 </CardBody>
