@@ -52,6 +52,53 @@ export default function Canva({canvasWidth, canvasHeight}){
         }
     }
 
+    function displayCircle(xc, yc, x, y)
+    {
+        drawPixel(xc+x, yc+y, 'black');
+        drawPixel(xc-x, yc+y, 'black');
+        drawPixel(xc+x, yc-y, 'black');
+        drawPixel(xc-x, yc-y, 'black');
+        drawPixel(xc+y, yc+x, 'black');
+        drawPixel(xc-y, yc+x, 'black');
+        drawPixel(xc+y, yc-x, 'black');
+        drawPixel(xc-y, yc-x, 'black');
+    }
+
+    function drawCircle(radius, center)
+    {
+        if(((center.x + radius) > canvasWidth) || ((center.x - radius) < 0)  || ((center.y + radius) > canvasHeight) || ((center.y - radius) < 0))
+        {
+            alert('Esse circulo não cabe no quadro!')
+            return;
+        }
+
+        let x = 0;
+        let y = radius;
+
+        let xc = center.x;
+        let yc = center.y;
+
+        let decision = 3 - 2 * radius;
+
+        displayCircle(xc, yc, x, y);
+
+        while(y >= x)
+        {
+            x++
+            if(decision > 0)
+            {
+                y--;
+                decision = decision + 4 * (x-y) + 10
+            }
+            else {
+                decision = decision + 4 * x + 6;
+            }
+            displayCircle(xc, yc, x, y);
+        }
+
+
+    }
+
     useEffect(() => {
         // if(mouseDown)
         // {
@@ -78,9 +125,10 @@ export default function Canva({canvasWidth, canvasHeight}){
     //onClick={() => {drawPixel((Math.floor(Math.random() * 100)), (Math.floor(Math.random() * 100)), 'black')}}
     onMouseDown={(ev) => {
         setMouseDown(true);
+        config.addPoint(ev.pageX, ev.pageY);
         if(config.getBrushMode() == 1)
         {
-            config.addPoint(ev.pageX, ev.pageY);
+            
         }  
         
         
@@ -90,8 +138,17 @@ export default function Canva({canvasWidth, canvasHeight}){
         if(config.getBrushMode() == 1)
         {
             config.addPoint(ev.pageX, ev.pageY);
-            config.getRadiusLastClick();
+            
             drawLine(config.getLastPoint(), config.getSecondLastPoint())
+        }
+
+        if(config.getBrushMode() == 2)
+        {
+            config.addPoint(ev.pageX, ev.pageY);
+            const radius = Math.ceil(config.getRadiusLastClick());
+
+            drawCircle(radius, config.getSecondLastPoint());
+
         }
         
     }}
